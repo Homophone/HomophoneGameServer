@@ -1,0 +1,20 @@
+{
+  "name": "homophone-game-server",
+  "version": "1.0.0",
+  "description": "Server for homephone app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Chloe Echikson, Mark Allen",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "cors": "^2.8.3",
+    "express": "^4.15.3",
+    "express-rate-limit": "^2.8.0",
+    "helmet": "^3.6.1",
+    "morgan": "^1.8.2",
+    "path": "^0.12.7"
+  }
+}
