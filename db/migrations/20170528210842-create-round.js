@@ -8,7 +8,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      wordsetId: {
+      wordSetId: {
         type: Sequelize.INTEGER,
         references: {
           model: 'word_sets',
