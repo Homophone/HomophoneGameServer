@@ -11,8 +11,8 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         // associations can be defined here
-        round.belongsTo(models.word_sets)
-        round.belongsTo(model.games)
+        round.belongsTo(models.word_set)
+        round.belongsTo(models.game)
       }
     }
   });
