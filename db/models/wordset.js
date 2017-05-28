@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 module.exports = function(sequelize, DataTypes) {
   var word_sets = sequelize.define('word_sets', {
     words: DataTypes.JSONB
@@ -8,6 +8,6 @@ module.exports = function(sequelize, DataTypes) {
         // associations can be defined here
       }
     }
-  });
-  return word_sets;
-};
+  })
+  return word_sets
+}

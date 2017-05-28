@@ -1,16 +1,16 @@
 //During the test the env variable is set to test
-process.env.NODE_ENV = 'test';
+process.env.NODE_ENV = 'test'
 
-const wordset = require ('../../db/models').word_sets;
+const wordset = require ('../../db/models').word_sets
 
 //Require the dev-dependencies
-const chai = require('chai');
-const chaiHttp = require('chai-http');
-const should = chai.should();
-const expect = require('chai').expect;
-const server = require ('../../index');
+const chai = require('chai')
+const chaiHttp = require('chai-http')
+const should = chai.should()
+const expect = require('chai').expect
+const server = require ('../../index')
 
-chai.use(chaiHttp);
+chai.use(chaiHttp)
 
 //Our parent block
 describe('api/word_sets', () => {
@@ -23,7 +23,7 @@ describe('api/word_sets', () => {
       "image": "https://thepeoplespharmacy-graedonenterpris.netdna-ssl.com/wp-content/uploads/Bare-Feet.jpg"
     }, {
       "word": "bair"
-    }]);
+    }])
 
     const set2 = JSON.stringify([{
       "word": "hostel",
@@ -38,22 +38,22 @@ describe('api/word_sets', () => {
     }, {
       words: set2
     }])
-  });
+  })
 
   afterEach(() => { // After each test we empty the database
-    wordset.destroy({where: {}});
-  });
+    wordset.destroy({where: {}})
+  })
 
   it('should list ALL word sets on /word_sets GET', function(done) {
     chai.request(server)
       .get('/api/word_sets')
       .end(function(err, res) {
-        if (err) return done(err);
-        expect(res).to.have.status(200);
-        expect(res.body).to.be.an('array');
-        expect(res.body).to.have.length(2);
-        done();
-      });
-  });
+        if (err) return done(err)
+        expect(res).to.have.status(200)
+        expect(res.body).to.be.an('array')
+        expect(res.body).to.have.length(2)
+        done()
+      })
+  })
 
-});
+})

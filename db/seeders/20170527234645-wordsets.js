@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 module.exports = {
   up: function (queryInterface, Sequelize) {
@@ -14,10 +14,10 @@ module.exports = {
       }]),
       createdAt: Sequelize.fn('NOW'),
       updatedAt: Sequelize.fn('NOW')
-    }]);
+    }])
   },
 
   down: function (queryInterface, Sequelize) {
-    return queryInterface.bulkDelete('word_sets', null, {});
+    return queryInterface.bulkDelete('word_sets', null, {})
   }
-};
+}
