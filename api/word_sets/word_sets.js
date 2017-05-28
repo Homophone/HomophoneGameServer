@@ -1,6 +1,6 @@
 const express = require ('express');
 const router = express.Router();
-const wordset = require ('../db/models').word_sets;
+const wordset = require ('../../db/models').word_sets;
 
 router.get('/', (req, res, next) => {
   wordset.findAll()
