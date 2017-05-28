@@ -7,7 +7,7 @@
     "get-homophones": "node scripts/get-homophones",
     "sequelize": "node_modules/.bin/sequelize",
     "start": "node index.js",
-    "test": "mocha api/**/*.js --timeout 10000"
+    "test": "mocha api/**/*.test.js --timeout 10000"
   },
   "author": "Chloe Echikson, Mark Allen",
   "license": "ISC",
