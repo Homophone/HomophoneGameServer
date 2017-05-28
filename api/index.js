@@ -5,4 +5,6 @@ router.get('/', (req, res) => {
   res.send('Hello Homophoner!');
 })
 
+router.use('/word_sets', require('./word_sets'));
+
 module.exports = router;
