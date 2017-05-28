@@ -1,5 +1,5 @@
 const http = require('http')
-const wordset = require('./db/models').word_sets
+const wordset = require('../db/models').word_sets
 const sequelize = require('sequelize')
 
 const getPage = (pageNum, cb) => {
