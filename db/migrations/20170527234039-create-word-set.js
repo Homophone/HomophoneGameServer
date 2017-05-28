@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 module.exports = {
   up: function(queryInterface, Sequelize) {
     return queryInterface.createTable('word_sets', {
@@ -19,9 +19,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       }
-    });
+    })
   },
   down: function(queryInterface, Sequelize) {
-    return queryInterface.dropTable('word_sets');
+    return queryInterface.dropTable('word_sets')
   }
-};
+}
