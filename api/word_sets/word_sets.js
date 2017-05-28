@@ -1,10 +1,10 @@
 const express = require ('express')
 const router = express.Router()
-const wordset = require ('../../db/models').word_sets
+const word_set = require ('../../db/models').word_set
 
 router.get('/', (req, res, next) => {
-  wordset.findAll()
-  .then((wordsets) => res.send(wordsets))
+  word_set.findAll()
+  .then((word_sets) => res.send(word_sets))
   .catch(next)
 })
 

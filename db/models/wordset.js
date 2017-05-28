@@ -1,13 +1,14 @@
 'use strict'
 module.exports = function(sequelize, DataTypes) {
-  var word_sets = sequelize.define('word_sets', {
+  var word_set = sequelize.define('word_set', {
     words: DataTypes.JSONB
   }, {
     classMethods: {
       associate: function(models) {
         // associations can be defined here
+        word_set.hasMany(models.round)
       }
     }
   })
-  return word_sets
+  return word_set
 }
