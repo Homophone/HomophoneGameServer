@@ -5,7 +5,7 @@
 ```
 npm install
 npm run sequelize -- db:migrate
-npm run seed
+npm run get-homophones
 ```
 
 ## Heroku
