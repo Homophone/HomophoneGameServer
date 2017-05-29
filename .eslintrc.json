@@ -10,7 +10,8 @@
     "standard",
     "standard-react",
     "eslint:recommended",
-    "plugin:react/recommended"
+    "plugin:react/recommended",
+    "plugin:node/recommended"
   ],
   "parserOptions": {
     "ecmaVersion": 6,
@@ -22,6 +23,7 @@
     "sourceType": "module"
   },
   "plugins": [
+    "node",
     "react"
   ],
   "rules": {
@@ -78,7 +80,8 @@
     "react/sort-comp": 0,
     "react/prefer-stateless-function": 0,
     "react/no-array-index-key": 0,
-    "import/no-unresolved": 0
+    "import/no-unresolved": 0,
+    "node/no-unpublished-require": 0
   },
   "settings": {
     "import/resolver": {

@@ -1,6 +1,9 @@
 {
   "name": "homophone-game-server",
   "version": "1.0.0",
+  "engines": {
+    "node": ">=6.7.0 <6.8.1"
+  },
   "description": "Server for homephone app",
   "main": "index.js",
   "scripts": {
