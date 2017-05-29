@@ -5,7 +5,7 @@ const round = require('../../db/models').round
 const wordSet = require('../../db/models').word_set
 const gameType = require('../types/game')
 
-const giphy = require('giphy')('dc6zaTOxFJmzC'); // TODO get production key
+const giphy = require('giphy')('dc6zaTOxFJmzC') // TODO get production key
 
 const getRandomWordSet = () => (
   wordSet.find({
@@ -16,10 +16,7 @@ const getRandomWordSet = () => (
   })
 )
 
-const getCorrectAnswer = (words) => {
-  console.log(words)
-  return words[Math.floor(Math.random() * words.length)].word
-}
+const getCorrectAnswer = (words) => words[Math.floor(Math.random() * words.length)].word
 
 const getGiphy = (word) => (
   new Promise((resolve, reject) => {
@@ -40,30 +37,28 @@ module.exports = {
   resolve(value) {
     // create a game
     return game.create()
-    .then((newGame) => {
+    .then((newGame) =>
 
       // generate a random word set
-      return getRandomWordSet()
+       getRandomWordSet()
       .then((randomWordSet) => {
         // create a correct answer
         const correctAnswer = getCorrectAnswer(randomWordSet.words)
 
         // get the giphy for the correct answer
         return getGiphy(correctAnswer)
-        .then((correctGiphy) => {
+        .then((correctGiphy) =>
           // create first round
-          return round.create({
-            correctAnswer: correctAnswer,
-            gameId: newGame.id,
-            wordSetId: randomWordSet.id,
-            giphyUrl: correctGiphy.url,
-            giphyToken: correctGiphy.id
-          })
+           round.create({
+             correctAnswer: correctAnswer,
+             gameId: newGame.id,
+             wordSetId: randomWordSet.id,
+             giphyUrl: correctGiphy.url,
+             giphyToken: correctGiphy.id
+           })
 
           // send the created game
-          .then(() => newGame)
-        })
-      })
-    })
+          .then(() => newGame))
+      }))
   }
 }
