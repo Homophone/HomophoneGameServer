@@ -1,7 +1,11 @@
+const sequelize = require('sequelize')
+
 const game = require('../../db/models').game
 const round = require('../../db/models').round
 const wordSet = require('../../db/models').word_set
 const gameType = require('../types/game')
+
+const giphy = require('giphy')('dc6zaTOxFJmzC'); // TODO get production key
 
 const getRandomWordSet = () => (
   wordSet.find({
@@ -12,8 +16,22 @@ const getRandomWordSet = () => (
   })
 )
 
-const getCorrectAnswer = (words) => (
-  words[Math.floor(Math.random() * words.length)].word
+const getCorrectAnswer = (words) => {
+  console.log(words)
+  return words[Math.floor(Math.random() * words.length)].word
+}
+
+const getGiphy = (word) => (
+  new Promise((resolve, reject) => {
+    giphy.search({
+      q: word,
+      limit: 1,
+      rating: 'pg',
+      sort: 'relevant'
+    }, (err, result) => (
+      err ? reject(err) : resolve(result.data[0])
+    ))
+  })
 )
 
 module.exports = {
@@ -28,17 +46,23 @@ module.exports = {
       return getRandomWordSet()
       .then((randomWordSet) => {
         // create a correct answer
-        const correctAnswer = getCorrectAnswer(randomWordSet)
+        const correctAnswer = getCorrectAnswer(randomWordSet.words)
 
-        // create first round
-        return round.create({
-          correctAnswer: correctAnswer,
-          gameId: newGame.id,
-          wordSetId: randomWordSet.id
+        // get the giphy for the correct answer
+        return getGiphy(correctAnswer)
+        .then((correctGiphy) => {
+          // create first round
+          return round.create({
+            correctAnswer: correctAnswer,
+            gameId: newGame.id,
+            wordSetId: randomWordSet.id,
+            giphyUrl: correctGiphy.url,
+            giphyToken: correctGiphy.id
+          })
+
+          // send the created game
+          .then(() => newGame)
         })
-
-        // send the created game
-        .then(() => newGame)
       })
     })
   }
