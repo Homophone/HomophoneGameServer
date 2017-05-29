@@ -53,7 +53,7 @@ module.exports = {
              correctAnswer: correctAnswer,
              gameId: newGame.id,
              wordSetId: randomWordSet.id,
-             giphyUrl: correctGiphy.url,
+             giphyUrl: correctGiphy.images.downsized_medium.url,
              giphyToken: correctGiphy.id
            })
 
