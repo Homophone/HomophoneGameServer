@@ -4,12 +4,16 @@ const wordSet = require('../../db/models').word_set
 const gameType = require('../types/game')
 
 const getRandomWordSet = () => (
-  return wordSet.find({
+  wordSet.find({
     order: [
       sequelize.fn('RANDOM')
     ],
     limit: 1
   })
+)
+
+const getCorrectAnswer = (words) => (
+  words[Math.floor(Math.random() * words.length)].word
 )
 
 module.exports = {
@@ -18,22 +22,24 @@ module.exports = {
   resolve(value) {
     // create a game
     return game.create()
-<<<<<<< HEAD
     .then((newGame) => {
+
       // generate a random word set
       return getRandomWordSet()
       .then((randomWordSet) => {
+        // create a correct answer
+        const correctAnswer = getCorrectAnswer(randomWordSet)
+
         // create first round
         return round.create({
-          gameId: newGame.id
+          correctAnswer: correctAnswer,
+          gameId: newGame.id,
+          wordSetId: randomWordSet.id
         })
+
+        // send the created game
         .then(() => newGame)
       })
-=======
-    .then((newGame) => round.create({
-      gameId: newGame.id
->>>>>>> 003121d6a2cd74545f0a4d6ccd21113f3ba01734
     })
-      .then(() => newGame))
   }
 }
