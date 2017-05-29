@@ -1,9 +1,10 @@
-const graphql = require('graphql')
-const GraphQLObjectType = graphql.GraphQLObjectType
-const GraphQLString = graphql.GraphQLString
-const GraphQLID = graphql.GraphQLID
-const GraphQLList = graphql.GraphQLList
-const GraphQLBoolean = graphql.GraphQLBoolean
+const {
+  GraphQLObjectType,
+  GraphQLID,
+  GraphQLList,
+  GraphQLBoolean
+} = require('graphql')
+
 const roundType = require('./round')
 
 const gameType = new GraphQLObjectType({
@@ -26,6 +27,6 @@ const gameType = new GraphQLObjectType({
       }
     }
   }
-});
+})
 
 module.exports = gameType

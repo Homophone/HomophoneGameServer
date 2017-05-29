@@ -18,6 +18,7 @@ module.exports = {
   resolve(value) {
     // create a game
     return game.create()
+<<<<<<< HEAD
     .then((newGame) => {
       // generate a random word set
       return getRandomWordSet()
@@ -28,6 +29,11 @@ module.exports = {
         })
         .then(() => newGame)
       })
+=======
+    .then((newGame) => round.create({
+      gameId: newGame.id
+>>>>>>> 003121d6a2cd74545f0a4d6ccd21113f3ba01734
     })
+      .then(() => newGame))
   }
 }

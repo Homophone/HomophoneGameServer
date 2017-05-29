@@ -1,6 +1,6 @@
 'use strict'
 module.exports = function(sequelize, DataTypes) {
-  var word_set = sequelize.define('word_set', {
+  const word_set = sequelize.define('word_set', {
     words: DataTypes.JSONB
   }, {
     classMethods: {
