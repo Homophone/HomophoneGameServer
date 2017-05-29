@@ -3,6 +3,7 @@ const {
   GraphQLObjectType
 } = require('graphql')
 
+const game = require('./queries/game')
 const games = require('./queries/games')
 const wordSets = require('./queries/word-sets')
 
@@ -12,6 +13,7 @@ const schema = new GraphQLSchema({
   query: new GraphQLObjectType({
     name: 'RootQueryType',
     fields: {
+      game,
       games,
       wordSets
     }

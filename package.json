@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
+    "start-watch": "./node_modules/nodemon/bin/nodemon.js index.js",
     "db-create": "ruby ./scripts/db_create.rb",
     "test-db-create": "ENVIRONMENT=test npm run db-create",
     "db-migrate": "npm run sequelize -- db:migrate",
@@ -51,6 +52,7 @@
     "eslint-plugin-react-native": "^2.3.2",
     "eslint-plugin-standard": "^3.0.1",
     "eslint-watch": "^3.1.0",
-    "mocha": "^3.4.2"
+    "mocha": "^3.4.2",
+    "nodemon": "^1.11.0"
   }
 }
