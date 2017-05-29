@@ -1,15 +1,6 @@
 const graphql = require('graphql')
 const GraphQLSchema = graphql.GraphQLSchema
 const GraphQLObjectType = graphql.GraphQLObjectType
-const GraphQLString = graphql.GraphQLString
-const GraphQLList = graphql.GraphQLList
-
-const wordSetType = require('./types/wordset')
-const gameType = require('./types/game')
-
-const wordSet = require('../db/models').word_set
-const game = require('../db/models').game
-const round = require('../db/models').round
 
 const games = require('./queries/games')
 const wordSets = require('./queries/word-sets')
