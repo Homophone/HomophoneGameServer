@@ -9,7 +9,9 @@
     "lint": "eslint .",
     "lint-fix": "eslint . --fix",
     "sequelize": "node_modules/.bin/sequelize",
-    "get-homophones": "node scripts/get-homophones"
+    "get-homophones": "node scripts/get-homophones",
+    "pre-push": "npm run lint && npm run test",
+    "setup-git-hooks": "./scripts/setup-git-hooks"
   },
   "author": "Chloe Echikson, Mark Allen",
   "license": "ISC",
