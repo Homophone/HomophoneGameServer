@@ -6,6 +6,8 @@ const {
   GraphQLBoolean
 } = require('graphql')
 
+const wordSetType = require('../types/wordset')
+
 const roundType = new GraphQLObjectType({
   name: 'round',
   description: 'A round',
@@ -37,6 +39,13 @@ const roundType = new GraphQLObjectType({
     giphyToken: {
       type: GraphQLString,
       description: 'Token for the Giphy used for the round'
+    },
+    wordSet: {
+      type: wordSetType,
+      description: 'Set of words used for the round',
+      resolve(obj, args, context) {
+        return obj.getWordSet()
+      }
     }
   }
 })
