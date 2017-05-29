@@ -15,7 +15,7 @@ const wordSetType = new GraphQLObjectType({
     },
     words: {
       type: new GraphQLList(GraphQLString),
-      description: 'A string of words',
+      description: 'A list of words',
       resolve(obj, args, context) {
         return _.map(obj.words, (word) => (
           word.word
