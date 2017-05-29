@@ -47,9 +47,22 @@ npm run test
 
 ## Heroku
 
+Add the heroku remote:
+
+```
+heroku git:remote -a homophone-game-server
+```
+
+Use `git push` to deploy to heroku:
+
 ```
 git push heroku master
-heroku run npm run sequelize -- db:migrate --env production
+```
+
+If there are any new migrations, run them:
+
+```
+heroku run npm run db-migrate
 ```
 
 ## Other Tasks
