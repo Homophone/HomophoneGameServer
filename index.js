@@ -1,12 +1,11 @@
 const express = require('express')
-const app = express()
 const morgan = require('morgan')
 const bodyParser = require('body-parser')
-const path = require('path')
-const deployPath = process.env.deployPath || ''
 const helmet = require('helmet')
 const rateLimit = require('express-rate-limit')
 const cors = require('cors')
+
+const app = express()
 
 // Middleware
 app.use(morgan('dev'))
@@ -28,13 +27,15 @@ const apiLimiter = new rateLimit({
 // API
 app.use('/api', apiLimiter, require('./api'))
 
-// Create server
-const server = require('http').createServer()
+// Create server. TODO: Is this needed? Heroku maybe?
+require('http').createServer()
 
 // Listen
 app.set('port', process.env.PORT || 3000)
 app.listen(app.get('port'), () => {
+  /* eslint-disable no-console */
   console.log('Listening intently on port ', app.get('port'))
+  /* eslint-enable no-console */
 })
 
 module.exports = app

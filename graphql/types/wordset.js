@@ -1,8 +1,10 @@
-const graphql = require('graphql')
-const GraphQLObjectType = graphql.GraphQLObjectType
-const GraphQLString = graphql.GraphQLString
-const GraphQLID = graphql.GraphQLID
-const GraphQLList = graphql.GraphQLList
+const {
+  GraphQLObjectType,
+  GraphQLString,
+  GraphQLID,
+  GraphQLList
+} = require('graphql')
+
 const _ = require('lodash')
 
 const wordSetType = new GraphQLObjectType({

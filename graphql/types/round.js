@@ -1,10 +1,10 @@
-const graphql = require('graphql')
-const GraphQLObjectType = graphql.GraphQLObjectType
-const GraphQLString = graphql.GraphQLString
-const GraphQLID = graphql.GraphQLID
-const GraphQLList = graphql.GraphQLList
-const GraphQLInt = graphql.GraphQLInt
-const GraphQLBoolean = graphql.GraphQLBoolean
+const {
+  GraphQLObjectType,
+  GraphQLString,
+  GraphQLID,
+  GraphQLInt,
+  GraphQLBoolean
+} = require('graphql')
 
 const roundType = new GraphQLObjectType({
   name: 'round',

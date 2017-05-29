@@ -1,6 +1,7 @@
 const http = require('http')
-const wordset = require('../db/models').word_sets
-const sequelize = require('sequelize')
+const wordSet = require('../db/models').word_sets
+
+/* eslint-disable no-console */
 
 const getPage = (pageNum, cb) => {
   http.get(`http://www.homophone.com/search.json?page=${pageNum}`, (res) => {
@@ -51,7 +52,7 @@ for (let i = 1; i < 85; i++) {
   getPage(i, (data) => {
     const formatedData = formatResponse(data)
 
-    wordset.bulkCreate(formatedData)
+    wordSet.bulkCreate(formatedData)
     .then((created) => console.log(created))
     .catch((err) => console.log(err))
   })
