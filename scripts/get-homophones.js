@@ -1,5 +1,7 @@
 const http = require('http')
-const wordSet = require('../db/models').word_sets
+const {
+  word_set: wordSet
+} = require('../db/models')
 
 /* eslint-disable no-console */
 
