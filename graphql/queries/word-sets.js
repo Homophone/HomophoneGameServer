@@ -1,7 +1,11 @@
-const graphql = require('graphql')
-const GraphQLList = graphql.GraphQLList
+const {
+  GraphQLList
+} = require('graphql')
 
-const wordSet = require('../../db/models').word_set
+const {
+  word_set: wordSet
+} = require('../../db/models')
+
 const wordSetType = require('../types/wordset')
 
 module.exports = {

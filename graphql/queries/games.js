@@ -1,7 +1,11 @@
-const graphql = require('graphql')
-const GraphQLList = graphql.GraphQLList
+const {
+  GraphQLList
+} = require('graphql')
 
-const game = require('../../db/models').game
+const {
+  game
+} = require('../../db/models')
+
 const gameType = require('../types/game')
 
 module.exports = {

@@ -1,6 +1,6 @@
-'use strict';
+'use strict'
 module.exports = function(sequelize, DataTypes) {
-  var game = sequelize.define('game', {
+  const game = sequelize.define('game', {
     livesRemaining: DataTypes.INTEGER,
     isActive: DataTypes.BOOLEAN
   }, {
@@ -10,6 +10,6 @@ module.exports = function(sequelize, DataTypes) {
         game.hasMany(models.round)
       }
     }
-  });
-  return game;
-};
+  })
+  return game
+}

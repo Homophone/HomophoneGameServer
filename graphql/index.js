@@ -1,6 +1,7 @@
-const graphql = require('graphql')
-const GraphQLSchema = graphql.GraphQLSchema
-const GraphQLObjectType = graphql.GraphQLObjectType
+const {
+  GraphQLSchema,
+  GraphQLObjectType
+} = require('graphql')
 
 const games = require('./queries/games')
 const wordSets = require('./queries/word-sets')
@@ -21,6 +22,6 @@ const schema = new GraphQLSchema({
       startNewGame
     }
   })
-});
+})
 
-module.exports = schema;
+module.exports = schema

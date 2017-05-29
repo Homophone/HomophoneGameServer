@@ -1,6 +1,6 @@
-'use strict';
+'use strict'
 module.exports = function(sequelize, DataTypes) {
-  var round = sequelize.define('round', {
+  const round = sequelize.define('round', {
     roundNumber: DataTypes.INTEGER,
     isCorrect: DataTypes.BOOLEAN,
     correctAnswer: DataTypes.STRING,
@@ -15,6 +15,6 @@ module.exports = function(sequelize, DataTypes) {
         round.belongsTo(models.game)
       }
     }
-  });
-  return round;
-};
+  })
+  return round
+}
