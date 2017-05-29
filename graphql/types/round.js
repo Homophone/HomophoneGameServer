@@ -39,6 +39,6 @@ const roundType = new GraphQLObjectType({
       description: 'Token for the Giphy used for the round'
     }
   }
-});
+})
 
 module.exports = roundType

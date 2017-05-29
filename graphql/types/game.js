@@ -26,6 +26,6 @@ const gameType = new GraphQLObjectType({
       }
     }
   }
-});
+})
 
 module.exports = gameType

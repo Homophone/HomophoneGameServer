@@ -23,6 +23,6 @@ const wordSetType = new GraphQLObjectType({
       }
     }
   }
-});
+})
 
 module.exports = wordSetType
