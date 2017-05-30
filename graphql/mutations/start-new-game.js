@@ -5,7 +5,8 @@ module.exports = {
   type: gameType,
   description: 'Start a new game',
   resolve(value) {
-    // create a game
-    return game.create()
+    return game.create({
+      livesRemaining: 3
+    })
   }
 }
