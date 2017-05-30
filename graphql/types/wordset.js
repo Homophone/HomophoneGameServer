@@ -10,7 +10,7 @@ const _ = require('lodash')
 const wordSetType = new GraphQLObjectType({
   name: 'wordSet',
   description: 'A word set',
-  fields: {
+  fields: () => ({
     id: {
       type: GraphQLID,
       description: 'Primary Key'
@@ -24,7 +24,7 @@ const wordSetType = new GraphQLObjectType({
         ))
       }
     }
-  }
+  })
 })
 
 module.exports = wordSetType

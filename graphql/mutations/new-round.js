@@ -44,16 +44,12 @@ module.exports = {
     }
   },
   resolve(value, { gameId }) {
-    // generate a random word set
     return getRandomWordSet()
     .then((randomWordSet) => {
-      // create a correct answer
       const correctAnswer = getCorrectAnswer(randomWordSet.words)
 
-      // get the giphy for the correct answer
       return getGiphy(correctAnswer)
       .then((correctGiphy) => (
-        // create first round
          round.create({
            correctAnswer: correctAnswer,
            gameId: gameId,
