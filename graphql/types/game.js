@@ -2,7 +2,8 @@ const {
   GraphQLObjectType,
   GraphQLID,
   GraphQLList,
-  GraphQLBoolean
+  GraphQLBoolean,
+  GraphQLInt
 } = require('graphql')
 
 const roundType = require('./round')
@@ -25,6 +26,10 @@ const gameType = new GraphQLObjectType({
       resolve(obj, args, context) {
         return obj.getRounds()
       }
+    },
+    livesRemaining: {
+      type: GraphQLInt,
+      description: 'Lives remaining for this game'
     }
   }
 })
