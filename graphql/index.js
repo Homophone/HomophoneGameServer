@@ -5,6 +5,7 @@ const {
 
 const game = require('./queries/game')
 const games = require('./queries/games')
+const round = require('./queries/round')
 const wordSets = require('./queries/word-sets')
 
 const chooseWord = require('./mutations/choose-word')
@@ -17,6 +18,7 @@ const schema = new GraphQLSchema({
     fields: {
       game,
       games,
+      round,
       wordSets
     }
   }),
