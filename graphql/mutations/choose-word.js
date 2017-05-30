@@ -32,6 +32,7 @@ module.exports = {
       const updateAttributes = {
         isCorrect,
         selectedAnswer: word
+        // TODO: Increment roundsCount
       }
 
       return Promise.all([
