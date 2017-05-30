@@ -8,6 +8,7 @@ const games = require('./queries/games')
 const wordSets = require('./queries/word-sets')
 
 const startNewGame = require('./mutations/start-new-game')
+const newRound = require('./mutations/new-round')
 
 const schema = new GraphQLSchema({
   query: new GraphQLObjectType({
@@ -21,7 +22,8 @@ const schema = new GraphQLSchema({
   mutation: new GraphQLObjectType({
     name: 'RootMutationType',
     fields: {
-      startNewGame
+      startNewGame,
+      newRound
     }
   })
 })

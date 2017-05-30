@@ -6,12 +6,10 @@ const {
   GraphQLBoolean
 } = require('graphql')
 
-const wordSetType = require('../types/wordset')
-
 const roundType = new GraphQLObjectType({
   name: 'round',
   description: 'A round',
-  fields: {
+  fields: () => ({
     id: {
       type: GraphQLID,
       description: 'Primary Key'
@@ -41,13 +39,20 @@ const roundType = new GraphQLObjectType({
       description: 'Token for the Giphy used for the round'
     },
     wordSet: {
-      type: wordSetType,
+      type: require('./wordset'),
       description: 'Set of words used for the round',
       resolve(obj, args, context) {
         return obj.getWordSet()
       }
+    },
+    game: {
+      type: require('./game'),
+      description: 'Game that round belongs to',
+      resolve(obj, args, context) {
+        return obj.getGame()
+      }
     }
-  }
+  })
 })
 
 module.exports = roundType

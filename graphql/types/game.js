@@ -2,15 +2,14 @@ const {
   GraphQLObjectType,
   GraphQLID,
   GraphQLList,
-  GraphQLBoolean
+  GraphQLBoolean,
+  GraphQLInt
 } = require('graphql')
-
-const roundType = require('./round')
 
 const gameType = new GraphQLObjectType({
   name: 'game',
   description: 'A game',
-  fields: {
+  fields: () => ({
     id: {
       type: GraphQLID,
       description: 'Primary Key'
@@ -20,13 +19,17 @@ const gameType = new GraphQLObjectType({
       description: 'If game is active'
     },
     rounds: {
-      type: new GraphQLList(roundType),
+      type: new GraphQLList(require('./round')),
       description: 'A list of rounds',
       resolve(obj, args, context) {
         return obj.getRounds()
       }
+    },
+    livesRemaining: {
+      type: GraphQLInt,
+      description: 'Lives remaining for this game'
     }
-  }
+  })
 })
 
 module.exports = gameType
