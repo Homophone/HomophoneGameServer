@@ -1,5 +1,9 @@
 const sequelize = require('sequelize')
 const {
+  sample
+} = require('lodash')
+
+const {
   GraphQLID,
   GraphQLNonNull
 } = require('graphql')
@@ -10,6 +14,8 @@ const roundType = require('../types/round')
 
 const giphy = require('giphy')('dc6zaTOxFJmzC') // TODO get production key
 
+class GiphyError extends Error {}
+
 const getRandomWordSet = () => (
   wordSet.find({
     order: [
@@ -18,8 +24,6 @@ const getRandomWordSet = () => (
     limit: 1
   })
 )
-
-const getCorrectAnswer = (words) => words[Math.floor(Math.random() * words.length)].word
 
 const getGiphy = (word) => (
   new Promise((resolve, reject) => {
@@ -34,6 +38,32 @@ const getGiphy = (word) => (
   })
 )
 
+const getRandomWordSetAttributes = ({ attempts, triedWords = [] }) => {
+  if (attempts === 0) {
+    throw new GiphyError(`Too many attempts. Tried: ${triedWords.join(', ')}`)
+  }
+
+  return getRandomWordSet()
+  .then((wordSet) => {
+    const word = sample(wordSet.words).word
+    return getGiphy(word).then((giphy) => {
+      if (giphy && giphy.id && giphy.images && giphy.images.downsized_medium && giphy.images.downsized_medium.url) {
+        return {
+          correctAnswer: word,
+          wordSetId: wordSet.id,
+          giphyUrl: giphy.images.downsized_medium.url,
+          giphyToken: giphy.id
+        }
+      } else {
+        return getRandomWordSetAttributes({
+          attempts: attempts - 1,
+          triedWords: [...triedWords, word]
+        })
+      }
+    })
+  })
+}
+
 module.exports = {
   type: roundType,
   description: 'Start a new round for an existing game',
@@ -44,20 +74,9 @@ module.exports = {
     }
   },
   resolve(value, { gameId }) {
-    return getRandomWordSet()
-    .then((randomWordSet) => {
-      const correctAnswer = getCorrectAnswer(randomWordSet.words)
-
-      return getGiphy(correctAnswer)
-      .then((correctGiphy) => (
-         round.create({
-           correctAnswer: correctAnswer,
-           gameId: gameId,
-           wordSetId: randomWordSet.id,
-           giphyUrl: correctGiphy.images.downsized_medium.url,
-           giphyToken: correctGiphy.id
-         }))
-      )
-    })
+    return getRandomWordSetAttributes({ attempts: 5 })
+    .then((wordSetAttributes) => (
+      round.create(Object.assign({}, wordSetAttributes, { gameId }))
+    ))
   }
 }
